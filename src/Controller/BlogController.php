@@ -19,4 +19,16 @@ class BlogController extends AbstractController
             'owner' => 'Thomas',
         ]);
     }
+
+    /**
+     * @Route("/blog/show/{title}", name="blog_show", methods={"GET"}, requirements={"title"="[a-z0-9]+"})
+     */
+    public function show(string $title = "Article sans titre")
+    {
+        $title = str_replace('-', ' ', $title);
+        $title = ucwords($title);
+        return $this->render('blog/show.html.twig',[
+            'title' => $title,
+        ]);
+    }
 }
