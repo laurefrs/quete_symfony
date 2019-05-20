@@ -21,6 +21,12 @@ class Category
      */
     private $name;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article" , mappedBy="category")
+     */
+    private $articles;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,5 +42,10 @@ class Category
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getArticles($categoryName)
+    {
+        return $this->articles;
     }
 }
