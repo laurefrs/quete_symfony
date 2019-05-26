@@ -2,7 +2,7 @@
 {% extends 'base.html.twig' %}
 
  {% block body %}
-     {{ category.name }}
+     <p>Nom de la catégorie des articles: {{ category.name }}</p>
      {% for article in articles %}
 
          <h1>{{ article.id }}: {{ article.title }}</h1><br>

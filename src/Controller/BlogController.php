@@ -43,15 +43,15 @@ return $this->render(
 }
 
 /**
- * @Route("/category/{categoryName}", name="show_category")
+ * @Route("/category/{name}", name="show_category")
  *
  * @return Response A response instance
  */
-public function showByCategory($categoryName = 'php') : Response
+public function showByCategory(Category $category) : Response
 {
-    $category = $this->getDoctrine()
+    /*$category = $this->getDoctrine()
         ->getRepository(Category::class)
-        ->findOneBy(['name'=>$categoryName]);
+        ->findOneBy(['name'=>$categoryName]);*/
 
     /*$articles = $this->getDoctrine()
         ->getRepository(Article::class)
