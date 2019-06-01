@@ -5,15 +5,14 @@
 
 {% block body %}
     <h1>All articles from article s table : </h1>
-    {% for article in articles %}
-        <div>
-            <h2>{{ dump (article.content) }} </h2>
 
+    {% for article in articles %}
+        <div class="list-group">
+            <h2>{{ dump (article.title) }} </h2>
         </div>
     {% else %}
         Aucun article trouvé.
     {% endfor %}
-    <a href="{{ path('app_index') }}">
-        Back to homepage.
-    </a>
+
+    <a class="btn btn-secondary" href="{{ path('app_index') }}" role="button">Back to homepage</a>
 {% endblock %}
