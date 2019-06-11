@@ -4,11 +4,18 @@
 {% block title %}All articles{% endblock %}
 
 {% block body %}
-    <h1>All articles from article s table : </h1>
 
-    {% for article in articles %}
+    {{ form_start(formArticle) }}
+    {{ form_row(formArticle.searchField) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(formArticle) }}
+
+
+    <h1>All articles from article\'s table : </h1>
+
+    {% for category in categories %}
         <div class="list-group">
-            <h2>{{ dump (article.title) }} </h2>
+            <h2>{{ dump (category.name) }} </h2>
         </div>
     {% else %}
         Aucun article trouvé.

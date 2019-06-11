@@ -8,8 +8,9 @@ use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-
+use App\Form\ArticleSearchType;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\CategoryType;
 
 /**
  * @Route("/blog")
@@ -26,20 +27,28 @@ class BlogController extends AbstractController
 */
 public function index(): Response
 {
-$articles = $this->getDoctrine()
-    ->getRepository(Article::class)
-    ->findAll();
+    $categories = $this->getDoctrine()
+        ->getRepository(Category::class)
+        ->findAll();
 
-if (!$articles) {
-    throw $this->createNotFoundException(
-        'No article found in article\'s table.'
+
+    /*if (!$articles) {
+        /*throw $this->createNotFoundException(
+         'No article found in article\'s table.'
+        );
+        }*/
+
+    $formArticle = $this->createForm(ArticleSearchType::class, null,
+        ['method' => Request::METHOD_GET]
     );
-}
 
-return $this->render(
-    'blog/index.html.twig',
-    ['articles' => $articles]
-);
+    return $this->render(
+        'blog/index.html.twig',
+         ['categories' => $categories,
+             'formArticle'=>$formArticle->createView(),
+
+         ]
+        );
 }
 
 /**
