@@ -10,12 +10,11 @@
     <button type="submit" name="btnSearch">Rechercher</button>
     {{ form_end(formArticle) }}
 
-
     <h1>All articles from article\'s table : </h1>
 
     {% for category in categories %}
         <div class="list-group">
-            <h2>{{ dump (category.name) }} </h2>
+            <h2>{{  category.name }}</h2>
         </div>
     {% else %}
         Aucun article trouvé.
