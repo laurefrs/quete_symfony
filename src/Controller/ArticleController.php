@@ -67,7 +67,9 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
 
             return $this->redirectToRoute('article_index', [
                 'id' => $article->getId(),
